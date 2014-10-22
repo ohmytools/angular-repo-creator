@@ -4,8 +4,13 @@ $path = readline();
 echo "Angular App Name:";
 $app = readline();
 $path = $path."/".$app."/";
-mkdir($path,755,true);
+mkdir($path);
 
+#create template for app
+echo $app;
+$fh = fopen($path.$app.".js", "w+");
+fwrite($fh, "var app = angular.module('".$app."', ['ngResource','ngRoute']);");
+fclose($fh);
 #install with bower
 /*exec("bower install angularjs");
 exec("bower install angular-resource");
