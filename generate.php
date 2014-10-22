@@ -20,6 +20,16 @@ fwrite($fh, 'app.config(function ($routeProvider) {
 	});
 });');
 fclose($fh);
+#create models for app
+$fh = fopen($path."models.js", "w+");
+fwrite($fh, 'app
+.factory("students", function ($resource) {
+    return $resource("/api/adviser/student/:id/:type",{id:\'@id\',type:\'@type\'},{
+        update:{method:"PUT",isArray:false}
+    });
+})');
+fclose($fh);
+
 #install with bower
 /*exec("bower install angularjs");
 exec("bower install angular-resource");
